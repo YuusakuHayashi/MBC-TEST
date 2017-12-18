@@ -1,0 +1,22 @@
+{
+  "name": "MBC-Hasegawa/dot-install",
+  "license": "proprietary",
+  "require": {
+        "monolog/monolog": "1.23.0",
+        "ext-mbstring": "*"
+  },
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/php"
+    }
+  ]
+}

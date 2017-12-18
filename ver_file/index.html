@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang=ja>
+    <head>
+        <meta charset="utf-8">
+        <title>現在の使用状況</title>
+    </head>
+
+    <body onload="get_status();">
+    <p><h1>1F</h1>現在の使用状況：</p>
+    <p><img id="1F" name="1F" ></p>
+    <hr>
+    <p><h1>2F</h1>現在の使用状況：現在サービス利用ができません。</p>
+
+    <script>
+        var xmlHttp;
+        function get_status(){
+            if (window.XMLHttpRequest){
+                xmlHttp = new XMLHttpRequest();
+            }else{
+                if (window.ActiveXObject){
+                    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }else{
+                    xmlHttp = null;
+                }
+            }
+            xmlHttp.onreadystatechange = checkStatus;
+            xmlHttp.open("GET", "1F_status", true);
+            xmlHttp.send(null);
+        }
+
+        function checkStatus(){
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+                var status = xmlHttp.responseText;
+                if ( status == "0" ) {
+                    document.getElementById("1F").src="image/available.png";
+                    document.getElementById("1F").alt="空室";
+                } else {
+                    document.getElementById("1F").src="image/unavailable.png";
+                    document.getElementById("1F").alt="使用中";
+                }
+            }
+        }
+    </script>
+    </body>
+</html>
